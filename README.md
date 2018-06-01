@@ -1,12 +1,13 @@
+
 # PiMetric
 
 Monitoring system for infrastructure and services 
 
 ## Overview
 
-PiMetric is a project created to carry out regular checks on hardware and software services. It has been built to run on a Raspberry Pi, but there is no reason why it couldn't scale up for larger installations.
+PiMetric carries out regular checks on hardware and software services. It runs on a Raspberry Pi, but there is no reason why it couldn't scale up for larger installations.
 
-It is designed around the concept of 'metrics' where each metric is a measurable entity that can be recorded and evaluated for correct operation within set parameters.
+It uses the concept of 'metrics'. Each 'metric' has a measurable value which is recorded and evaluated for correct operation.
 
 Examples of the type of metrics include;
 
@@ -22,30 +23,30 @@ The project is roughly divided into three parts. The measurement core, the manag
 
 ### Measurement
 
-The measurement core focuses on getting information and recording it appropriately.
+The measurement core focuses on getting information and recording it.
 
-It utilises separate processes to gather data in a progromatic way via Python based data gathering modules. These processes store measured values in a SQLite database that contains a table for stored information on all of themetrics and a table for the configuration of the metrics themselves.
+It utilities separate processes to gather data in a programmatic way via Python based data gathering modules. These processes store measured values in a SQLite database. It contains a table for stored metric values and a table for the configuration.
 
-The metrics can be arranged into a tree structure to allow users to categorise their monitoring to create greater context for evaluation.
+The metrics can be arranged in a hierarchy.  This is a tree structure to create greater context for evaluation.
 
 The processes are individually scheduled and run via a cron job.
 
 ### Management
 
-The management interface is a simple CRUD system to provide the ability create, edit, delete and view the metric information. While it is not intended to be a operational interface, it shares some features of one. 
+The management is carried out using a simple CRUD system. This provides the ability create, edit, delete and view the metric information. While it is not intended to be a operational interface, it shares some features of one. 
 
-The managemnent system includes the appropriate loging, validation and sanitisation required to maintain the integrity of the SQLite database and the structure of the metrics. 
+The management system includes logging, validation and sanitization. This maintains the integrity of the SQLite database and the structure of the metrics. 
 
-It is built from HTML and PHP using a lightly modified Bootstrap front end and some d3.js graphing components.
+It is built from HTML, PHP and JavaScript, using a lightly modified Bootstrap front end and some d3.js graphing components.
 
 ### Operating
 
-The operating layer provides an end user with the ability to explore the monitoring emvironment and the values that it has collected.
+The operating layer provides an end user with the ability to explore the monitoring environment and the values that it has collected.
 
-It is designed to be used to display information in different ways depending on the role or end use of the data. For example a 'weather' role might just include information from a local weather station and externaly derived services, wheras a 'network' function might include data rates, access availability, ping delays.
+It is designed to display information in different ways depending on the role or end use of the data. For example, a 'weather' role might include information from a local weather station and external services. Whereas a 'network' function might include data rates, access availability, ping delays.
 
-The way that it displays information is designed to allow an overview of what metrics are being measured in context with their roles and to allow the user to drill into the data and discover information that is historically useful to them. 
+The way that it displays information is designed to allow an overview of what metrics are being measured in context with their roles. The user can also drill into the data and discover information that is useful to them. 
 
-It is also designed to respond to alerts when the metrics exceed their stated operating parameters and to provide a mechanism to manage faults and error conditions to aid troubleshooting.
+It is also designed to respond to alerts when the metrics exceed their stated operating parameters. This provides a mechanism to manage faults, error conditions and to aid troubleshooting.
 
-Similar to the management layer, this portion of the project is built from HTML and PHP using Bootstrap as the front end and d3.js graphing components
+Like the management layer, this part of the project uses HTML, PHP and JavaScript. Bootstrap is at the front end and d3.js looks after the graphing components
