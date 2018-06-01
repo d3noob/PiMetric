@@ -14,7 +14,7 @@ Examples of the type of metrics include;
 - Data pulled from SNMP requests (hard drive space, memory, CPU load)
 - Information scraped from a web page.
 - Values parsed from a text file (logs)
-- HTTP RESTful/API queries (Nagios, bespoke systems, external providers)
+- HTTP RESTful/API queries (via Nagios, bespoke systems, external providers)
 - Database content
 
 ## Structure
