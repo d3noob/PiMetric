@@ -36,10 +36,16 @@ The management interface is a simple CRUD system to provide the ability create, 
 
 The managemnent system includes the appropriate loging, validation and sanitisation required to maintain the integrity of the SQLite database and the structure of the metrics. 
 
-It is built from HTML and PHP using a lightly modified Bootstrap front end and some d3.js graphing components
+It is built from HTML and PHP using a lightly modified Bootstrap front end and some d3.js graphing components.
 
 ### Operating
 
 The operating layer provides an end user with the ability to explore the monitoring emvironment and the values that it has collected.
 
-It is designed to be used to display information in different ways depending on the role or end use of the data. For example a 'weather' role might just include information from a local weather station and externaly derived services, wheras a 'network' function might include data rates, access availability 
+It is designed to be used to display information in different ways depending on the role or end use of the data. For example a 'weather' role might just include information from a local weather station and externaly derived services, wheras a 'network' function might include data rates, access availability, ping delays.
+
+The way that it displays information is designed to allow an overview of what metrics are being measured in context with their roles and to allow the user to drill into the data and discover information that is historically useful to them. 
+
+It is also designed to respond to alerts when the metrics exceed their stated operating parameters and to provide a mechanism to manage faults and error conditions to aid troubleshooting.
+
+Similar to the management layer, this portion of the project is built from HTML and PHP using Bootstrap as the front end and d3.js graphing components
