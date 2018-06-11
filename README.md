@@ -54,7 +54,7 @@ It is designed to display information in different ways depending on the role or
 
 The way that it displays information is designed to allow an overview of what metrics are being measured in context with their roles. The user can also drill into the data and discover information that is useful to them. 
 
-![The metric information page](MainPage.png)
+![The metric information page](InfoMetrics.png)
 
 It is also designed to respond to alerts when the metrics exceed their stated operating parameters. This provides a mechanism to manage faults, error conditions and to aid troubleshooting.
 
