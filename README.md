@@ -29,6 +29,8 @@ It utilities separate processes to gather data in a programmatic way via Python 
 
 The metrics can be arranged in a hierarchy.  This is a tree structure to create greater context for evaluation.
 
+![The main operating page](MainPage.png)
+
 The processes are individually scheduled and run via a cron job.
 
 ### Management
