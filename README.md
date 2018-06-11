@@ -29,13 +29,14 @@ It utilities separate processes to gather data in a programmatic way via Python 
 
 The metrics can be arranged in a hierarchy.  This is a tree structure to create greater context for evaluation.
 
-![The main operating page](MainPage.png)
 
 The processes are individually scheduled and run via a cron job.
 
 ### Management
 
 The management is carried out using a simple CRUD system. This provides the ability create, edit, delete and view the metric information. While it is not intended to be a operational interface, it shares some features of one. 
+
+![The management CRUD options](EditMetric.png)
 
 The management system includes logging, validation and sanitization. This maintains the integrity of the SQLite database and the structure of the metrics. 
 
@@ -45,10 +46,18 @@ It is built from HTML, PHP and JavaScript, using a lightly modified Bootstrap fr
 
 The operating layer provides an end user with the ability to explore the monitoring environment and the values that it has collected.
 
+![The ReadMetrics page](ReadMetrics.png)
+
 It is designed to display information in different ways depending on the role or end use of the data. For example, a 'weather' role might include information from a local weather station and external services. Whereas a 'network' function might include data rates, access availability, ping delays.
+
+![The graphs page](GraphsPage.png)
 
 The way that it displays information is designed to allow an overview of what metrics are being measured in context with their roles. The user can also drill into the data and discover information that is useful to them. 
 
+![The metric information page](MainPage.png)
+
 It is also designed to respond to alerts when the metrics exceed their stated operating parameters. This provides a mechanism to manage faults, error conditions and to aid troubleshooting.
+
+![The main operating page](MainPage.png)
 
 Like the management layer, this part of the project uses HTML, PHP and JavaScript. Bootstrap is at the front end and d3.js looks after the graphing components
