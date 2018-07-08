@@ -5,7 +5,7 @@ A monitoring system for infrastructure and services
 
 ## Overview
 
-![Structural overview](PiMetricOverview.png)
+![Structural overview](/img/PiMetricOverview.png)
 
 PiMetric carries out regular checks on hardware and software services. It runs on a Raspberry Pi, but there is no reason why it couldn't scale up for larger installations.
 
