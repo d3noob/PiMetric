@@ -8,7 +8,7 @@
 	// Need to validate $parent as being one of the possible metrics. Otherwise return error.
 
 	// Get all the metrics from the stored db that have `parent` as a parent from the status database
-	$db = new PDO('sqlite:/srv/monitoring/monitoring');
+	$db = new PDO('sqlite:/srv/PiMetric/monitoring/monitoring');
 
 	$query = "SELECT * FROM stored WHERE 
 			  dtg>DATETIME('now','localtime', '-36 hours')

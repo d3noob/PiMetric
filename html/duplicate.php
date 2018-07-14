@@ -85,7 +85,7 @@ if ( $_POST ) {
 	include 'status_validation.php';
 
 	// Check the name against all the currently used names to ensure no duplicates
-	$db = new PDO('sqlite:/srv/monitoring/monitoring');
+	$db = new PDO('sqlite:/srv/PiMetric/monitoring/monitoring');
 	$result = $db->query('SELECT name FROM status');
 
 	$bingo = 0;
@@ -129,7 +129,7 @@ if ( $_POST ) {
 // Here we should be able to write our information to the database.
 		
 		// Connect to the sqlite db (this needs to have the right permissions
-		$db = new PDO('sqlite:/srv/monitoring/monitoring');
+		$db = new PDO('sqlite:/srv/PiMetric/monitoring/monitoring');
 
 		/* Create a prepared statement */
 		$sql = 	"INSERT INTO status ".
@@ -199,7 +199,7 @@ if ( $_POST ) {
 	}
 	
 	// Get all the metric parameters from the status database
-	$db = new PDO('sqlite:/srv/monitoring/monitoring');
+	$db = new PDO('sqlite:/srv/PiMetric/monitoring/monitoring');
 	$statement = $db->prepare("SELECT * FROM status WHERE name=:name;");
 	$statement->bindValue(':name', $name);
 	$statement->execute();

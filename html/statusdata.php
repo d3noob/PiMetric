@@ -13,7 +13,7 @@
 	}
 
 	// Check the parent against all the possible parents to ensure validity
-	$db = new PDO('sqlite:/srv/monitoring/monitoring');
+	$db = new PDO('sqlite:/srv/PiMetric/monitoring/monitoring');
 	$result = $db->query('SELECT parent FROM status');
 
 	$bingo = 0;
@@ -33,7 +33,7 @@
 
 
 	// Get all the metric names from the status database
-	$db = new PDO('sqlite:/srv/monitoring/monitoring');
+	$db = new PDO('sqlite:/srv/PiMetric/monitoring/monitoring');
 
 	$query = "SELECT * FROM status WHERE 
 			  parent = :parent";
@@ -58,7 +58,7 @@
 	$parent = 'root';
 	
 	// Get all the metric names from the status database
-	$db = new PDO('sqlite:/srv/monitoring/monitoring');
+	$db = new PDO('sqlite:/srv/PiMetric/monitoring/monitoring');
 
 	$query = "SELECT * FROM status WHERE 
 			  parent = 'root'";

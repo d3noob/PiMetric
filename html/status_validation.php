@@ -40,7 +40,7 @@
 			$error_message_script = "Invalid character in script. Alternative suggested.";
 			$script = preg_replace("/[^A-Za-z0-9\_]/", '', $script);
 	}
-	$url = '/srv/monitoring/metrics/'.$script.'.py';
+	$url = '/srv/PiMetric/monitoring/metrics/'.$script.'.py';
 	if ((!file_exists($url)) && ($measured == 1)) {
 			$error_message_script = "Sorry, there isn't a metric checking script for that name and you have selected measured below.";
 	}

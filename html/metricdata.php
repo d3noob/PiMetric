@@ -13,7 +13,7 @@
 	}
 
 	// Check the name against all the possible names to ensure validity
-	$db = new PDO('sqlite:/srv/monitoring/monitoring');
+	$db = new PDO('sqlite:/srv/PiMetric/monitoring/monitoring');
 	$result = $db->query('SELECT name FROM status');
 
 	$bingo = 0;
@@ -33,7 +33,7 @@
 
 
 	// Get all the metric data from the status database
-	$db = new PDO('sqlite:/srv/monitoring/monitoring');
+	$db = new PDO('sqlite:/srv/PiMetric/monitoring/monitoring');
 
 	$query = "SELECT * FROM status WHERE 
 			  name = :name";

@@ -8,7 +8,7 @@
 	// Need to validate $name as being one of the possible metrics. Otherwise return error.
 
 	// Get all the metric names from the status database
-	$db = new PDO('sqlite:/srv/monitoring/monitoring');
+	$db = new PDO('sqlite:/srv/PiMetric/monitoring/monitoring');
 
 	$query = "SELECT * FROM stored WHERE 
 			  dtg>DATETIME('now','localtime', '-36 hours')

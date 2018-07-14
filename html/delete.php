@@ -15,7 +15,7 @@ function test_input($data) {
 }
 
 // Get all the metric names from the status database
-$db = new PDO('sqlite:/srv/monitoring/monitoring');
+$db = new PDO('sqlite:/srv/PiMetric/monitoring/monitoring');
 $result = $db->query('SELECT name FROM status');
 $resultslist = array();
 $i = 0;
@@ -47,7 +47,7 @@ if ( $_POST ) {
 		echo "No Errors. Deleting metric";
 		
 		// Connect to the sqlite db (this needs to have the right permissions
-		$db = new PDO('sqlite:/srv/monitoring/monitoring');
+		$db = new PDO('sqlite:/srv/PiMetric/monitoring/monitoring');
 
 		/* Create a prepared statement */
 		$sql = "DELETE FROM status WHERE name = :name";
@@ -70,7 +70,7 @@ if ( $_POST ) {
 	$bingo = 0;
 
 	// Check the name against all the currently used names to ensure validity
-	$db = new PDO('sqlite:/srv/monitoring/monitoring');
+	$db = new PDO('sqlite:/srv/PiMetric/monitoring/monitoring');
 	$result = $db->query('SELECT name FROM status');
 
 	foreach($result as $row) {

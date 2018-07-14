@@ -13,7 +13,7 @@ if ($_GET) {
 	}
 
 	// Check the name against all the possible names to ensure validity
-	$db = new PDO('sqlite:/srv/monitoring/monitoring');
+	$db = new PDO('sqlite:/srv/PiMetric/monitoring/monitoring');
 	$result = $db->query('SELECT name FROM status');
 
 	$bingo = 0;
@@ -32,7 +32,7 @@ if ($_GET) {
 	$bingo = 0;
 
 	// Get all the metric details from the status database
-	$db = new PDO('sqlite:/srv/monitoring/monitoring');
+	$db = new PDO('sqlite:/srv/PiMetric/monitoring/monitoring');
 	$statement = $db->prepare("SELECT * FROM status WHERE name=:name;");
 	$statement->bindValue(':name', $name);
 	$statement->execute();

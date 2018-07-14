@@ -13,7 +13,7 @@
 # $name = 'temp_inside';
 
 # Get the parent of the current metric from the status database
-$db = new PDO('sqlite:/srv/monitoring/monitoring');
+$db = new PDO('sqlite:/srv/PiMetric/monitoring/monitoring');
 $stmt = $db->prepare("SELECT parent FROM status WHERE name = :name");
 $stmt -> bindParam(':name', $name, PDO::PARAM_STR);
 $stmt -> execute();
@@ -29,7 +29,7 @@ $parent_C = $result[0];
 while ($parent_C != 'null') {
 	
     # Get the parent [P] of the current parent [C] 
-	$db = new PDO('sqlite:/srv/monitoring/monitoring');
+	$db = new PDO('sqlite:/srv/PiMetric/monitoring/monitoring');
 	$stmt = $db->prepare("SELECT * FROM status WHERE name = :parent");
 	$stmt -> bindParam(':parent', $parent_C, PDO::PARAM_STR);
 	$stmt -> execute();
@@ -40,7 +40,7 @@ while ($parent_C != 'null') {
 	$parent_P = $result['parent'];
 
     # Get all metrics with current parent
-	$db = new PDO('sqlite:/srv/monitoring/monitoring');
+	$db = new PDO('sqlite:/srv/PiMetric/monitoring/monitoring');
 	$stmt = $db->prepare("SELECT * FROM status WHERE parent = :parent and monitored >= 1");
 	$stmt -> bindParam(':parent', $parent_C, PDO::PARAM_STR);
 	$stmt -> execute();
@@ -87,7 +87,7 @@ while ($parent_C != 'null') {
 	# The highest_level_actual at this point is the highest actual alert level for that parent
 
 	# update the database to reflect the new alert levels for the current parent [C]
-	$db = new PDO('sqlite:/srv/monitoring/monitoring');
+	$db = new PDO('sqlite:/srv/PiMetric/monitoring/monitoring');
 	$sql = 	"UPDATE status SET level_ack = :highest_level_ack, level_actual = :highest_level_actual WHERE name = :parent_C";
 	$stmt = $db -> prepare($sql);
 	$stmt -> bindParam(':parent_C', $parent_C, PDO::PARAM_STR);

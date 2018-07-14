@@ -91,7 +91,7 @@ if ($_POST) {
 	$bingo = 0;
 
 	// Check the name against all the currently used names
-	$db = new PDO('sqlite:/srv/monitoring/monitoring');
+	$db = new PDO('sqlite:/srv/PiMetric/monitoring/monitoring');
 	$result = $db->query('SELECT name FROM status');
 
 	foreach($result as $row) {
@@ -153,7 +153,7 @@ if ($_POST) {
 		}
 		
 		# write our information to the database
-		$db = new PDO('sqlite:/srv/monitoring/monitoring');
+		$db = new PDO('sqlite:/srv/PiMetric/monitoring/monitoring');
 
 		# Create a prepared statement
 		$sql = 	"UPDATE status SET ".
@@ -236,7 +236,7 @@ if ($_POST) {
 	$original_name = $name;
 	
 	// Get all the metric parameters from the status database
-	$db = new PDO('sqlite:/srv/monitoring/monitoring');
+	$db = new PDO('sqlite:/srv/PiMetric/monitoring/monitoring');
 	$statement = $db->prepare("SELECT * FROM status WHERE name=:name;");
 	$statement->bindValue(':name', $name);
 	$statement->execute();

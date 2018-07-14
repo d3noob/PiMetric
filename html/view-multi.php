@@ -13,7 +13,7 @@ if ($_GET) {
 	}
 
 	// Check the parent against all the possible parents to ensure validity
-	$db = new PDO('sqlite:/srv/monitoring/monitoring');
+	$db = new PDO('sqlite:/srv/PiMetric/monitoring/monitoring');
 	$result = $db->query('SELECT parent FROM status');
 
 	$bingo = 0;

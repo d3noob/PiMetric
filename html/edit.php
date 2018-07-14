@@ -15,7 +15,7 @@ function test_input($data) {
 }
 
 // Get all the metric names from the status database
-$db = new PDO('sqlite:/srv/monitoring/monitoring');
+$db = new PDO('sqlite:/srv/PiMetric/monitoring/monitoring');
 $result = $db->query('SELECT name FROM status');
 $resultslist = array();
 $i = 0;

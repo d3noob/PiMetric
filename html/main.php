@@ -14,7 +14,7 @@
 	}
 
 	// Check the parent against all the possible parents to ensure validity
-	$db = new PDO('sqlite:/srv/monitoring/monitoring');
+	$db = new PDO('sqlite:/srv/PiMetric/monitoring/monitoring');
 	$result = $db->query('SELECT parent FROM status');
 
 	$bingo = 0;
@@ -37,7 +37,7 @@
 	// Get the parent of the parent's label for the 'Go Back' button. 
 	
 		// Get all the metric data from the status database
-		$db = new PDO('sqlite:/srv/monitoring/monitoring');
+		$db = new PDO('sqlite:/srv/PiMetric/monitoring/monitoring');
 
 		$query = "SELECT * FROM status WHERE 
 				  name = :parent";
@@ -54,7 +54,7 @@
 		/* close connection */
 		$db = null;
 
-		$db = new PDO('sqlite:/srv/monitoring/monitoring');
+		$db = new PDO('sqlite:/srv/PiMetric/monitoring/monitoring');
 
 		$query = "SELECT * FROM status WHERE 
 				  name = :parent";
