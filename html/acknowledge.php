@@ -56,7 +56,7 @@ if ($_POST) {
 		) {
 		
 		# Insert the acknowledge information into the sqlite db
-		$db = new PDO('sqlite:/srv/monitoring/monitoring');
+		$db = new PDO('sqlite:/srv/PiMetric/monitoring/monitoring');
 		$stmt = $db -> prepare("INSERT INTO acknowledge (name, dtg, ack_text, ack_state) VALUES (:name, :dtg, :ack_text, :ack_state)");
 		$stmt -> bindParam(':name', $name, PDO::PARAM_STR);
 		$stmt -> bindParam(':dtg', $dtg, PDO::PARAM_STR);
@@ -66,7 +66,7 @@ if ($_POST) {
 		$db = null;
 
 		# Update the acknowledged state in the sqlite db
-		$db = new PDO('sqlite:/srv/monitoring/monitoring');
+		$db = new PDO('sqlite:/srv/PiMetric/monitoring/monitoring');
 		$sql = 	"UPDATE status SET acknowledged = 1, level_ack = 'green' WHERE name = :name";
 		$stmt = $db -> prepare($sql);
 		$stmt -> bindParam(':name', $name, PDO::PARAM_STR);
@@ -77,7 +77,7 @@ if ($_POST) {
 		include 'level-update.php';
 
 		# Get the parent of the current metric from the status database
-		$db = new PDO('sqlite:/srv/monitoring/monitoring');
+		$db = new PDO('sqlite:/srv/PiMetric/monitoring/monitoring');
 		$stmt = $db->prepare("SELECT parent FROM status WHERE name = :name");
 		$stmt -> bindParam(':name', $name, PDO::PARAM_STR);
 		$stmt -> execute();
@@ -107,7 +107,7 @@ if ($_POST) {
 	$bingo = 0;
 
 	# Check the name against all the currently used names
-	$db = new PDO('sqlite:/srv/monitoring/monitoring');
+	$db = new PDO('sqlite:/srv/PiMetric/monitoring/monitoring');
 	$result = $db->query('SELECT name FROM status');
 
 	foreach($result as $row) {
