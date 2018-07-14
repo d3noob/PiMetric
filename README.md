@@ -1,7 +1,7 @@
 
 # PiMetric
 
-A monitoring system for infrastructure and services 
+A monitoring system for infrastructure and services.
 
 ## Overview
 
