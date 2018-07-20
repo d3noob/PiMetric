@@ -213,13 +213,15 @@ echo "Setting Hostname..."
 # Therefore to set the hostname
 raspi-config nonint do_hostname $HOSTNAME
 
+# Adding the crontab lines
+echo "adding the crontab lines"
+(sudo crontab -u pi -l ; echo "* * * * * cd /srv/PiMetric/monitoring && python3 monitoring.py") | crontab -u pi -
+(sudo crontab -u pi -l ; echo "5 0 * * * cd /srv/PiMetric/monitoring && python3 db-manage.py") | crontab -u pi -
+
 # At the end of the installation a reboot will be required.
-
-echo "add the crontab lines"
-
 echo "############################"
-echo "All finished. Please reboot."
+echo "All finished. Rebooting."
 echo "############################"
 
 # Reboot
-# sudo reboot
+sudo reboot
