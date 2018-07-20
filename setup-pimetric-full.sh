@@ -27,6 +27,7 @@
 # PiMetric
 # Add your unique details in the set up parameters area below.
 
+
 # exit if not running using sudo
 if [ "$EUID" -ne 0 ]
 	then echo "Must be root. Please use sudo."
