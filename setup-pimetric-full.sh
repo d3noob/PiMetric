@@ -40,27 +40,20 @@ HOSTNAME="pimetric-test"         # hostname of the Pi via pimetric.local
 
 # Script steps
 
-echo "##############################"
-echo "Starting update..."
-echo "##############################"
+echo "PiMetric Installation"
+echo "Starting update... (this may take a few minutes)"
 
 # Update/upgrade the base OS
 echo >> $LOGFILE 2>&1
 echo "$(date "+%Y-%m-%d %T") : Update started" >> $LOGFILE 2>&1
 apt-get update &>> $LOGFILE 2>&1
 
-echo "##############################"
-echo "Starting upgrade..."
-echo "##############################"
-
+echo "Starting upgrade... This may take 10 minutes or so)"
 echo >> $LOGFILE 2>&1
 echo "$(date "+%Y-%m-%d %T") : Upgrade started" >> $LOGFILE 2>&1
 apt-get upgrade -y &>> $LOGFILE 2>&1
 
-echo "#########################"
 echo "Downloading PiMetric..."
-echo "#########################"
-
 # Get PiMetric and set permissions
 #
 echo >> $LOGFILE 2>&1
@@ -70,6 +63,9 @@ echo >> $LOGFILE 2>&1
 
 cd /srv
 curl -L https://github.com/d3noob/PiMetric/archive/master.zip > pimetric.zip
+
+echo "Decompressing the files..."
+
 unzip pimetric.zip
 mv PiMetric-master PiMetric
 
@@ -80,19 +76,22 @@ chmod -R 775 /srv/PiMetric/
 usermod -a -G www-data pi
 chmod 666 /srv/PiMetric/monitoring/monitoring
 
-
-echo "#################################"
-echo "Starting Nginx and PHP install..."
-echo "#################################"
-
 # Web Server
 # A web server with Nginx and PHP installed
 
-# install nginx and php-fpm
+echo "Starting NGINX install..."
+# install nginx
 echo >> $LOGFILE 2>&1
 echo "$(date "+%Y-%m-%d %T") : \
-Ngnix / PHP install started" >> $LOGFILE 2>&1
-apt-get install nginx php-fpm -y &>> $LOGFILE 2>&1
+Ngnix install started" >> $LOGFILE 2>&1
+apt-get install nginx -y &>> $LOGFILE 2>&1
+
+echo "Starting PHP install..."
+# install php-fpm
+echo >> $LOGFILE 2>&1
+echo "$(date "+%Y-%m-%d %T") : \
+PHP install started" >> $LOGFILE 2>&1
+apt-get install php-fpm -y &>> $LOGFILE 2>&1
 
 echo "Setting up the sites file..."
 # Set up the sites file
@@ -147,47 +146,76 @@ if [ ! -e /var/run/nginx.pid ]; then
     exit
 fi
 
-
-echo "##########################"
-echo "Starting SQLite install..."
-echo "##########################"
-
-# install SQLite and access programs
+echo "Installing SQLite..."
+# install SQLite
 echo >> $LOGFILE 2>&1
 echo "$(date "+%Y-%m-%d %T") : \
-SQLite and access programs install started" >> $LOGFILE 2>&1
-apt-get install sqlite3 python3-pip php7.0-sqlite3 snmp snmpd snmp-mibs-downloader libsnmp-dev speedtest-cli -y &>> $LOGFILE 2>&1
+SQLite install started" >> $LOGFILE 2>&1
+apt-get install sqlite3 php7.0-sqlite3 -y &>> $LOGFILE 2>&1
 
-echo "###########################################"
-echo "Starting Python Modules via pip3 install..."
-echo "###########################################"
-
-# install Python Modules via pip3
+echo "Installing python3-pip..."
+# install python3-pip
 echo >> $LOGFILE 2>&1
 echo "$(date "+%Y-%m-%d %T") : \
-Python Modules via pip3 install started" >> $LOGFILE 2>&1
-pip3 install requests mysqlclient lxml cssselect python3-netsnmp &>> $LOGFILE 2>&1
+python3-pip install started" >> $LOGFILE 2>&1
+apt-get install python3-pip -y &>> $LOGFILE 2>&1
 
+echo "Installing snmp snmpd snmp-mibs-downloader libsnmp-dev..."
+# install snmp snmpd snmp-mibs-downloader libsnmp-dev
+echo >> $LOGFILE 2>&1
+echo "$(date "+%Y-%m-%d %T") : \
+snmp snmpd snmp-mibs-downloader libsnmp-dev install started" >> $LOGFILE 2>&1
+apt-get install snmp snmpd snmp-mibs-downloader libsnmp-dev -y &>> $LOGFILE 2>&1
 
+echo "Installing speedtest-cli..."
+# install speedtest-cli
+echo >> $LOGFILE 2>&1
+echo "$(date "+%Y-%m-%d %T") : \
+speedtest-cli install started" >> $LOGFILE 2>&1
+apt-get install speedtest-cli -y &>> $LOGFILE 2>&1
 
-echo "###################"
+echo "Installing pip3 module requests..."
+# install Python Module requests via pip3
+echo >> $LOGFILE 2>&1
+echo "$(date "+%Y-%m-%d %T") : \
+Python Module requests install started" >> $LOGFILE 2>&1
+pip3 install requests &>> $LOGFILE 2>&1
+
+echo "Installing pip3 module mysqlclient..."
+# install Python Module mysqlclient via pip3
+echo >> $LOGFILE 2>&1
+echo "$(date "+%Y-%m-%d %T") : \
+Python Module mysqlclient install started" >> $LOGFILE 2>&1
+pip3 install mysqlclient &>> $LOGFILE 2>&1
+
+echo "Installing pip3 module lxml..."
+# install Python Module lxml via pip3
+echo >> $LOGFILE 2>&1
+echo "$(date "+%Y-%m-%d %T") : \
+Python Module lxml install started" >> $LOGFILE 2>&1
+pip3 install lxml &>> $LOGFILE 2>&1
+
+echo "Installing pip3 module cssselect..."
+# install Python Module cssselect via pip3
+echo >> $LOGFILE 2>&1
+echo "$(date "+%Y-%m-%d %T") : \
+Python Module cssselect install started" >> $LOGFILE 2>&1
+pip3 install cssselect &>> $LOGFILE 2>&1
+
+echo "Installing pip3 module python3-netsnmp..."
+# install Python Module python3-netsnmp via pip3
+echo >> $LOGFILE 2>&1
+echo "$(date "+%Y-%m-%d %T") : \
+Python Module python3-netsnmp install started" >> $LOGFILE 2>&1
+pip3 install python3-netsnmp &>> $LOGFILE 2>&1
+
 echo "Setting Hostname..."
-echo "###################"
-
-# Setting the hostname
-# These are commands that use raspi-config in noninteractive mode
-# https://github.com/raspberrypi-ui/rc_gui/blob/master/src/rc_gui.c#L23-L70
-# raspi-config nonint functions obey sh return codes 
-
 # Therefore to set the hostname
 raspi-config nonint do_hostname $HOSTNAME
 
 # At the end of the installation a reboot will be required.
 
-
 echo "add the crontab lines"
-
-
 
 echo "############################"
 echo "All finished. Please reboot."
