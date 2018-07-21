@@ -26,7 +26,7 @@ Examples of the type of metrics include;
 
 ## Installation
 
-The [installation instructions](https://github.com/d3noob/PiMetric/wiki/Installation) are fairly manual at this stage, but it is hoped to automete these to make the process easier to new users of the Raspberry Pi.
+The [installation instructions](https://github.com/d3noob/PiMetric/wiki/Installation) include a description of getting the Pi ready for use from scratch and describes how to start the mainly automated installation.
 
 ## Structure.
 
