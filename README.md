@@ -11,9 +11,9 @@ It was written to be as simple as possible to allow it to run on a Raspberry Pi 
 
 It uses the concept of 'metrics', where each 'metric' has a measurable value which is recorded and evaluated for correct operation.
 
-![A 'live' Operational view](https://github.com/d3noob/PiMetric/blob/master/img/2018-07-14%2013_56_34-Operating%20Page.png)
+![A 'live' Operational view](https://github.com/d3noob/PiMetric/wiki/images/2018-07-14%2013_56_34-Operating%20Page.png)
 
-![Graph of measured values](https://github.com/d3noob/PiMetric/blob/master/img/2018-06-27%2006_40_42-Read%20Metrics.png)
+![Graph of measured values](https://github.com/d3noob/PiMetric/wiki/images/2018-06-27%2006_40_42-Read%20Metrics.png)
 
 
 Examples of the type of metrics include;
