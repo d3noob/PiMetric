@@ -124,7 +124,7 @@ foreach($result as $row) {
 						if ($key2 == 'name') {
 							echo "<td><a href='info.php?name=".$row['name']."'>".$row['name']."</a> </td>"; 
 						} else if ($key2 == 'parent') {
-							echo "<td><a href='info.php?name=".$row['parent']."'>".$row['parent']."</a> </td>"; 
+							echo "<td><a href='view-multi.php?parent=".$row['parent']."'>".$row['parent']."</a> </td>"; 
 						} else if ($key2 == 'value') {
 							echo "<td".$value_highlight.">" .$row2 ." </td>"; 
 						} else if ($key2 == 'alert_lower') {
