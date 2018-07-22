@@ -47,7 +47,7 @@ echo >> $LOGFILE 2>&1
 echo "$(date "+%Y-%m-%d %T") : Update started" >> $LOGFILE 2>&1
 apt-get update &>> $LOGFILE 2>&1
 
-echo "Starting upgrade... This may take 10 minutes or so)"
+echo "Starting upgrade... This may take 15 minutes or so)"
 echo >> $LOGFILE 2>&1
 echo "$(date "+%Y-%m-%d %T") : Upgrade started" >> $LOGFILE 2>&1
 apt-get upgrade -y &>> $LOGFILE 2>&1
