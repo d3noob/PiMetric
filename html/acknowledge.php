@@ -30,7 +30,7 @@ if ($_POST) {
 
 	$dtg = date("Y-m-d H:i:s", time()); 
 
-	#Validate name
+	# Validate name
 	if ($name == '') {
 		$error_message_name = "The metric name is required";
 	}
@@ -42,13 +42,13 @@ if ($_POST) {
 			$error_message_name = "Sorry, the name is too long. 50 characters maximum.";
 			$name = substr($name, 0, 50);
 	}
-	#Validate ack_text
+	# Validate ack_text
 	if ($ack_text != preg_replace("/[^A-Za-z0-9 \.\'\?\(\)\@\!\,\:\[\]]/", '', $ack_text)) {
 			$error_message_ack_text = "Chatacters Removed. Alternative suggested.";
 			$ack_text = preg_replace("/[^A-Za-z0-9 \.\'\?\(\)\@\!\,\:\[\]]/", '', $ack_text);
 	}	
 
-	#Jump if no errors.
+	# Jump if no errors.
 	if ($error_message_name == '' &&
 		$error_message_dtg == '' &&
 		$error_message_ack_text == '' &&
@@ -132,94 +132,103 @@ if ($_POST) {
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!--  <link rel="icon" href="../../favicon.ico"> -->
 
     <title>Acknowledge Metric</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Custom styles for this template -->
-    <link href="css/justified-nav.css" rel="stylesheet">
 	<link href="css/custom.css" rel="stylesheet" type="text/css">
-
+    <!-- jquery dependency -->
     <script src="js/jquery-2.1.4.min.js"></script>
 
   </head>
 
   <body style="padding-top: 50px">
 
-    <div class="container">
-
 	<?php include 'navbar.php'; ?>
 
-<p></p>
+<div class="container" style="width: 100%; margin-top: 10px">
 
-    <!-- *** The start of the form *** -->
-	<form class="form-horizontal" role="form" action="acknowledge.php" method="post">
+	<div class="row">
 
-      <!-- *** name field *** -->
-      <div class="row">
-	  <div class="form-group">
-		<label for="name" class="col-sm-2 control-label">Metric name</label>
-		<div class="col-sm-4">
-		  <input type="text" 
-		         class="form-control" 
-		         id="name" 
-		         name="name" 
-		         placeholder="Metric name"
-		         value="<?php echo $name; ?>"
-		         readonly
-		    <?php if ( $error_message_name != '' ) {echo "style=\"border-color: red\"";} ?>
-		  >
-		</div>
-        <div class="col-sm-4 control-label" style="text-align: left">
-	      <span style="font-size: 10px; color: grey "> 
-		    <?php if ( $error_message_name != '' ) {
-			  echo "<font style=\"color: red\">$error_message_name</font>";
-			  } else { echo "Lowercase alphanumerics and underscore only"; }
-			?>
-		  </span>
-	    </div>
-	  </div>
-	  </div>
+		<div class="col-xs-2"> <!-- left col -->
+			<div class="container-fluid   pull-right" style="width: 100%; margin-top:10px;" >
+				<div class="row" style="width: 100%; margin-bottom: 10px">
+					<a href='create.php' class='btn btn-success' style='width: 100%'>Create New Metric</a>
+				</div>
+				<div class="row" style="width: 100%; margin-bottom: 10px">
+					<a href='edit.php' class='btn btn-success' style='width: 100%'>Edit a New Metric</a>
+				</div>
+				<div class="row" style="width: 100%; margin-bottom: 10px">
+					<a href='main.php?parent=<?php echo $parent;?>' class='btn btn-info' style='width: 100%'>Operating page</a>
+				</div>
+				<div class="row" style="width: 100%; margin-bottom: 10px">
+					<a href='read.php' class='btn btn-info' style='width: 100%'>View Metrics Table</a>
+				</div>
+			</div>
+		</div> <!-- col -->
+		
+		<div class="col-xs-10">
+			<!-- *** The start of the form *** -->
+			<form class="form-horizontal" role="form" action="acknowledge.php" method="post">
+				<!-- *** name field *** -->
+				<div class="row">
+					<div class="form-group">
+						<label for="name" class="col-sm-2 control-label">Metric name</label>
+						<div class="col-sm-4">
+						  <input type="text" 
+								 class="form-control" 
+								 id="name" 
+								 name="name" 
+								 placeholder="Metric name"
+								 value="<?php echo $name; ?>"
+								 readonly
+							<?php if ( $error_message_name != '' ) {echo "style=\"border-color: red\"";} ?>
+						  >
+						</div>
+						<div class="col-sm-4 control-label" style="text-align: left">
+							<span style="font-size: 10px; color: grey "> 
+								<?php if ( $error_message_name != '' ) {
+								  echo "<font style=\"color: red\">$error_message_name</font>";
+								  } else { echo "Lowercase alphanumerics and underscore only"; }
+								?>
+							</span>
+						</div>
+					</div>
+				</div>
 
-	  <input type="hidden" name="ack_state" value="1">
+				<input type="hidden" name="ack_state" value="1">
 
-      <!-- *** ack_text field *** -->
-      <div class="row">
-	  <div class="form-group">
-		<label for="ack_text" class="col-sm-2 control-label">Acknowledge Reason</label>
-		<div class="col-sm-4">
-          <textarea class="form-control"
-                   id="ack_text"
-                   name="ack_text"
-                   rows="5"
-                   placeholder="Why the metric is being acknowledged"
-		           <?php if ( $error_message_ack_text != '' ) {echo "style=\"border-color: red\"";} ?>
-		           ><?php echo $ack_text; ?></textarea>
-	    </div>
-        <div class="col-sm-4 control-label" style="text-align: left">
-	      <span style="font-size: 10px; color: grey "> 
-		    <?php if ( $error_message_ack_text != '' ) {
-			  echo "<font style=\"color: red\">$error_message_ack_text</font>";
-			  } else { echo "General text area"; }
-			?>
-		  </span>
-	    </div>
-	  </div>
-	  </div>
+				<!-- *** ack_text field *** -->
+				<div class="row">
+					<div class="form-group">
+						<label for="ack_text" class="col-sm-2 control-label">Acknowledge Reason</label>
+						<div class="col-sm-4">
+						  <textarea class="form-control"
+								   id="ack_text"
+								   name="ack_text"
+								   rows="5"
+								   placeholder="Why the metric is being acknowledged"
+								   <?php if ( $error_message_ack_text != '' ) {echo "style=\"border-color: red\"";} ?>
+								   ><?php echo $ack_text; ?></textarea>
+							<button type="submit" class="btn btn-lg btn-success" style="margin-top: 20px;">Acknowledge</button>
+						</div>
+						<div class="col-sm-4 control-label" style="text-align: left">
+							<span style="font-size: 10px; color: grey "> 
+								<?php if ( $error_message_ack_text != '' ) {
+								  echo "<font style=\"color: red\">$error_message_ack_text</font>";
+								  } else { echo "General text area"; }
+								?>
+							</span>
+						</div>
+					</div>
+				</div>
 
-	  <div class="form-group">
-		<div class="col-sm-3">
-		  <button type="submit" class="btn btn-lg btn-success">Acknowledge</button>
-		</div>
-	  </div>
+			</form>
 
-	</form>
+		</div> <!-- col -->
+	</div> <!-- row -->
 
     </div> <!-- /container -->
 
