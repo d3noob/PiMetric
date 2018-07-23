@@ -35,7 +35,7 @@ fi
 
 # Set up parameters. Enter your particular details here.
 LOGFILE=/home/pi/install.log
-HOSTNAME="pimetric-test"         # hostname of the Pi via pimetric.local
+HOSTNAME="pimetric"         # hostname of the Pi via pimetric.local
 
 # Script steps
 
