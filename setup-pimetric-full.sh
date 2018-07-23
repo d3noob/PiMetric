@@ -180,11 +180,11 @@ Python Module requests install started" >> $LOGFILE 2>&1
 pip3 install requests &>> $LOGFILE 2>&1
 
 # install Python Module mysqlclient via pip3
-echo "Installing pip3 module mysqlclient..."
+echo "Installing pip3 module mysqlclient and PyMySQL..."
 echo >> $LOGFILE 2>&1
 echo "$(date "+%Y-%m-%d %T") : \
 Python Module mysqlclient install started" >> $LOGFILE 2>&1
-pip3 install mysqlclient &>> $LOGFILE 2>&1
+pip3 install mysqlclient PyMySQL &>> $LOGFILE 2>&1
 
 # install Python Module lxml via pip3
 echo "Installing pip3 module lxml..."
